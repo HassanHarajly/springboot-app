@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonController {
     private final PersonService personService;
     private static final Logger LOGGER=LoggerFactory.getLogger(Application.class);
-    Logger logger = LoggerFactory.getLogger("ol");
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
