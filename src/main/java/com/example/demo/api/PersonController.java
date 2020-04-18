@@ -21,6 +21,8 @@ public class PersonController {
     @PostMapping
     public void addPerson(@RequestBody Person person)
     {
+
+        LOGGER.error(person.getName().toString());
         personService.addPerson(person);
         LOGGER.error("Simple log statement with inputs {}, {} and {}", 1,2,3);
     }
