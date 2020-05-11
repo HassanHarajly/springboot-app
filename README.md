@@ -9,6 +9,7 @@ cf push hassansApplication -p /c/Users/hassan/projects/springboot-app/target/dem
 Posting:
 ===
 hassanmharajlyapp.cfapps.io/api/v1/person
+
 Getting:
 ===
 hassanmharajlyapp.cfapps.io/api/v1/person/getMapping
