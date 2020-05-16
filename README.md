@@ -16,7 +16,7 @@ Getting:
 ===
 hassanmharajlyapp.cfapps.io/api/v1/person/getMapping
 
-
+## Setup:
 Java version 8 only supported pcf only supports 8 not 11:
 https://www.oracle.com/java/technologies/javase-jdk8-downloads.html
 make sure the jdk is put on your path in the console to check type in "which java" no quotes you should see something similar to this:
