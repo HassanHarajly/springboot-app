@@ -1,4 +1,8 @@
 # springboot-app
+## Running:
+mvn package
+
+java -jar target/demo-0.0.1-SNAPSHOT.jar
 
 Deploying:
 =======
@@ -11,10 +15,10 @@ cf push hassansApplication -p /c/Users/hassan/projects/springboot-app/target/dem
 Posting:
 ===
 hassanmharajlyapp.cfapps.io/api/v1/person
-
+localhost:8080/api/v1/person
 Getting:
 ===
-hassanmharajlyapp.cfapps.io/api/v1/person/getMapping
+localhost:8080/api/v1/person/getMapping
 
 ## Setup:
 Java version 8 only supported pcf only supports 8 not 11:
