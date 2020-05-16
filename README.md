@@ -27,3 +27,6 @@ Download Apache maven 3.6.3 from:
 https://maven.apache.org/download.cgi
 to verify same as java do which mvn you should see something similar to:
 /c/apache-maven-3.6.3/bin/mvn
+
+Download pcf for deployment:
+https://docs.pivotal.io/pcf-dev/install-windows.html
