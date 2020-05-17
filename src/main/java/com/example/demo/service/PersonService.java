@@ -5,8 +5,7 @@ import com.example.demo.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import java.util.*;
 
 @Service
 public class PersonService {
@@ -30,5 +29,10 @@ public class PersonService {
     public List<Person> getAllPeople()
     {
         return personDao.selectAllPeople();
+    }
+
+    public Optional<Person> getPersonById(UUID id )
+    {
+        return personDao.selectPersonById(id);
     }
 }
