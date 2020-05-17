@@ -8,6 +8,8 @@ public class Person {
     private final UUID id;
     private final String name;
 
+    //this jsonproperty annotation tells spring that the post json
+    // request with for example attribute "name" will map to the java object name
     public Person(@JsonProperty("id") UUID id,
                   @JsonProperty("name") String name) {
         this.id = id;
