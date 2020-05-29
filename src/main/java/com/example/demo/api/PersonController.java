@@ -3,8 +3,10 @@ package com.example.demo.api;
 import com.example.demo.model.Person;
 import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +26,7 @@ public class PersonController {
     //postmapping tells the rest controller what function to call when a post request is made
     //RequestBody tells spring where to put the post body data into
     @PostMapping
-    public void addPerson(@RequestBody Person person)
+    public void addPerson(@RequestBody  @Valid @NonNull Person person)
     {
 
         personService.addPerson(person);
@@ -40,5 +42,17 @@ public class PersonController {
     public Person getPersonById(@PathVariable("id") UUID id)
     {
         return personService.getPersonById(id).orElse(null);
+    }
+
+    @DeleteMapping(path = "{id}")
+    public void deletePersonById(@PathVariable("id") UUID id) {
+    personService.deletePerson(id);
+    }
+    //@valid and @NonNull enforce that a person object must come in with a name attribute, the name object is made required
+    //in the model/person with the annotation @NotBlank
+    @PutMapping(path = "{id}")
+    public void updatePerson(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Person personToUpdate)
+    {
+        personService.updatePerson(id,personToUpdate);
     }
 }
