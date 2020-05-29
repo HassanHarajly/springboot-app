@@ -13,7 +13,7 @@ public class PersonService {
     private final PersonDao personDao;
 
     //this is doing dependency injection, essentially the personDao is a singleton marked by fakedao that we can inject into any of our services
-    //@qualifier distinguishes between the actual class that is inhereting the implementation of PersonDao.
+    //@qualifier distinguishes between the actual class that is inheriting the implementation of PersonDao.
     //so the qualifier goes to the implementations of persondao and finds the one that matches fakedao.
     //this qualifier allows us to have multiple classes implementing the personDao interface and inject them as we need.
     @Autowired
@@ -35,4 +35,15 @@ public class PersonService {
     {
         return personDao.selectPersonById(id);
     }
+
+    public int deletePerson(UUID id)
+    {
+        return personDao.deletePersonById(id);
+    }
+
+    public int updatePerson(UUID id, Person newPerson)
+    {
+        return personDao.updatePersonById(id,newPerson);
+    }
+
 }
