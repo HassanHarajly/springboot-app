@@ -17,7 +17,7 @@ public class PersonService {
     //so the qualifier goes to the implementations of persondao and finds the one that matches fakedao.
     //this qualifier allows us to have multiple classes implementing the personDao interface and inject them as we need.
     @Autowired
-    public PersonService(@Qualifier("FakeDao") PersonDao personDao) {
+    public PersonService(@Qualifier("postgres") PersonDao personDao) {
         this.personDao = personDao;
         System.out.println(personDao);
     }
