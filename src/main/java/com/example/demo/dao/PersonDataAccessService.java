@@ -16,11 +16,18 @@ import java.util.UUID;
 @Repository("mysql")
 public class PersonDataAccessService implements PersonDao{
     //autowired instantiates this bean and injects our datasource
-    @Autowired
+
     private JdbcTemplate jdbcTemplate;
 
+
+    PersonDataAccessService(@Autowired JdbcTemplate jdbc)
+    {
+        jdbcTemplate=jdbc;
+
+    }
     @Override
-    public int insertPerson(UUID id, Person person) {
+    public int insertPerson(UUID id, Person person)
+    {
         return 0;
     }
 
