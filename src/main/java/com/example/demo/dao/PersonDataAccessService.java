@@ -34,15 +34,7 @@ public class PersonDataAccessService implements PersonDao{
     @Override
     public List<Person> selectAllPeople() {
         final String selectpeopleSql = "SELECT id, name FROM people";
-      List<Person> personList =   jdbcTemplate.query(selectpeopleSql, new RowMapper<Person>() {
-            @Override
-            public Person mapRow(ResultSet resultSet, int i) throws SQLException {
-                Person person = new Person( UUID.randomUUID(),resultSet.getString("name"));
-
-
-                return person;
-            }
-        });
+      List<Person> personList =   jdbcTemplate.query(selectpeopleSql, new PersonRowMapper());
         return personList;
     }
 
@@ -59,5 +51,13 @@ public class PersonDataAccessService implements PersonDao{
     @Override
     public int updatePersonById(UUID id, Person person) {
         return 0;
+    }
+    private  static  class PersonRowMapper implements  RowMapper<Person>{
+
+        @Override
+        public Person mapRow(ResultSet resultSet, int i) throws SQLException {
+            Person person = new Person(UUID.randomUUID(),resultSet.getString("name"));
+            return person;
+        }
     }
 }
