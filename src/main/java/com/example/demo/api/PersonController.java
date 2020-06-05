@@ -26,11 +26,14 @@ public class PersonController {
     //postmapping tells the rest controller what function to call when a post request is made
     //RequestBody tells spring where to put the post body data into
     @PostMapping
-    public void addPerson(@RequestBody  @Valid @NonNull Person person)
+    public int addPerson(@RequestBody  @Valid @NonNull Person person)
     {
 
-        personService.addPerson(person);
+
+       return personService.addPerson(person);
+
     }
+
 
     @GetMapping
    public List<Person> getAllPeople()

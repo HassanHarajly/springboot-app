@@ -20,7 +20,7 @@ public class PersonDataAccessService implements PersonDao{
     private JdbcTemplate jdbcTemplate;
 
 
-    PersonDataAccessService(@Autowired JdbcTemplate jdbc)
+    public PersonDataAccessService(@Autowired JdbcTemplate jdbc)
     {
         jdbcTemplate=jdbc;
 
