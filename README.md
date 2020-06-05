@@ -20,6 +20,12 @@ Getting:
 ===
 localhost:8080/api/v1/person/getMapping
 
+## Testing:
+run mvn test command
+to view coverage paste this url into your browser(this isnt an absolute path you need to find it on your machine): 
+target/site/jacoco/index.html.
+to test new classes in intellij right click inside of the file and click generate and select test, the testing library used is junit5.
+
 ## Setup:
 Java version 8 only supported pcf only supports 8 not 11:
 https://www.oracle.com/java/technologies/javase-jdk8-downloads.html
