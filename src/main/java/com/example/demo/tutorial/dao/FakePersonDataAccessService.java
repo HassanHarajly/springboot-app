@@ -1,5 +1,5 @@
-package com.example.demo.dao;
-import com.example.demo.model.Person;
+package com.example.demo.tutorial.dao;
+import com.example.demo.tutorial.model.Person;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
