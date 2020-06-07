@@ -1,13 +1,11 @@
-package com.example.demo.service;
+package com.example.demo.tutorial.service;
 
-import com.example.demo.dao.FakePersonDataAccessService;
-import com.example.demo.dao.PersonDao;
-import com.example.demo.model.Person;
+import com.example.demo.tutorial.dao.FakePersonDataAccessService;
+import com.example.demo.tutorial.model.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;

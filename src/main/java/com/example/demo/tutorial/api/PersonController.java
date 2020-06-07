@@ -1,7 +1,7 @@
-package com.example.demo.api;
+package com.example.demo.tutorial.api;
 
-import com.example.demo.model.Person;
-import com.example.demo.service.PersonService;
+import com.example.demo.tutorial.model.Person;
+import com.example.demo.tutorial.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
