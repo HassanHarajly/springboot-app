@@ -7,6 +7,7 @@ java -jar target/demo-0.0.1-SNAPSHOT.jar
 Deploying:
 =======
 cf login -a  https://api.run.pivotal.io --sso
+(credentials will be provided for authorized personal only)
 
 mvn package
 
@@ -21,8 +22,9 @@ Getting:
 localhost:8080/api/v1/person/getMapping
 
 ## Testing:
-run mvn test command
-to view coverage paste this url into your browser(this isnt an absolute path you need to find it on your machine): 
+run "mvn test" command
+
+to view the line coverage paste this url into your browser(this isnt an absolute path you need to find it on your machine): 
 target/site/jacoco/index.html.
 to test new classes in intellij right click inside of the file and click generate and select test, the testing library used is junit5.
 
@@ -35,7 +37,7 @@ make sure the jdk is put on your path in the console to check type in "which jav
 
 Download Apache maven 3.6.3 from:
 https://maven.apache.org/download.cgi
-to verify same as java do which mvn you should see something similar to:
+to verify same enter the "which mvn" command you should see something similar to:
 /c/apache-maven-3.6.3/bin/mvn
 
 Download pcf for deployment:
