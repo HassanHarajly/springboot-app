@@ -1,6 +1,7 @@
 package com.example.demo.barcodelookup.service;
 
 import com.example.demo.barcodelookup.dao.AwsBarcodeDao;
+import com.example.demo.barcodelookup.model.Product;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,8 @@ public class ItemLookupService {
         this.awsBarcodeDao = awsBarcodeDao;
     }
 
-    public String findBarCode()
+    public Product findBarCode(String barcode)
     {
-        return awsBarcodeDao.queryForBarCode();
+        return awsBarcodeDao.queryByBarcode(barcode);
     }
 }
