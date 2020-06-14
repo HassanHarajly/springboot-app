@@ -14,8 +14,12 @@ public class ItemLookupService {
         this.awsBarcodeDao = awsBarcodeDao;
     }
 
-    public Product findBarCode(String barcode)
+    public Product findBarCodeSaveIfNotFound(String barcode)
     {
-        return awsBarcodeDao.queryByBarcode(barcode);
+        return awsBarcodeDao.returnProductSaveIfNotFound(barcode);
+    }
+    public Product findBarCodeDontSaveIfNotFound(String barcode)
+    {
+        return awsBarcodeDao.returnProductDontSaveIfNotFound(barcode);
     }
 }
