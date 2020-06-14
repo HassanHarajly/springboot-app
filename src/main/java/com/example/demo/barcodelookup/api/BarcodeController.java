@@ -19,9 +19,9 @@ public class BarcodeController {
     }
 
     @GetMapping(path = "{id}")
-    public String returnFunction(@PathVariable("id")int test)
+    public String returnFunction(@PathVariable("id")String  test)
     {
-        return itemLookupService.findBarCode();
+        return itemLookupService.findBarCode(test).getProductName();
     }
 
 }
