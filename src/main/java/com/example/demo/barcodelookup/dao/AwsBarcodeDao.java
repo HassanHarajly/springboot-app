@@ -29,7 +29,7 @@ public class AwsBarcodeDao implements ItemLookupDao {
 
     private List<Product> products = new ArrayList<>();
 
-    public Product queryByBarcode(String barcode)
+    public Product returnProductSaveIfNotFound(String barcode)
     {
 
         final String selectProductSql = "SELECT barcodeOrUpc, productName FROM productData WHERE barCodeOrUpc ="+barcode+";";
@@ -43,7 +43,21 @@ public class AwsBarcodeDao implements ItemLookupDao {
             return new Product("no product exists","000");
         }
 
-//        return null;
+    }
+
+    public Product returnProductDontSaveIfNotFound(String barcode)
+    {
+
+        final String selectProductSql = "SELECT barcodeOrUpc, productName FROM productData WHERE barCodeOrUpc ="+barcode+";";
+        products =   jdbcTemplate.query(selectProductSql, new ProductRowMapper());
+
+        if (products.size()>0)
+        {
+            return products.get(0);
+        }
+        else{
+            return new Product("no product exists not saving","000");
+        }
     }
     private  static  class ProductRowMapper implements  RowMapper<Product>{
 
