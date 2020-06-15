@@ -63,7 +63,7 @@ public class AwsBarcodeDao implements ItemLookupDao {
 
     public void addNewBarcode(String barcode)
     {
-        String insertProductQuery  = "INSERT INTO BarcodeNotFound (barcode) VALUES(" +barcode+ ")";
+        String insertProductQuery  = "INSERT IGNORE INTO BarcodeNotFound (barcode) VALUES(" +barcode+ ")";
         jdbcTemplate.update(insertProductQuery);
     }
     private  static  class ProductRowMapper implements  RowMapper<Product>{
