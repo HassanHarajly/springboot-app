@@ -22,7 +22,7 @@ mvn package
 
 cf push hassansApplication -p /c/Users/hassan/projects/springboot-app/target/demo-0.0.1-SNAPSHOT.jar
 
-Post Request:
+Post Request( for my entire postman collection go to https://www.getpostman.com/collections/21a90207e4924210de87):
 ===
 localhost:8080/api/v1/itemLookup/saveifnotfound/0012612 (this number is an id number  representing an item barcode)
 
