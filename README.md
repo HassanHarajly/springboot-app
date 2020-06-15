@@ -1,4 +1,11 @@
 # springboot-app
+The purpose of this app is to query an aws database to look for an item by a barcode number and return information about that item.
+Currently the functionility is:
+The api queries the aws table to see if the product has been stored in there if it has it will return the information, if not
+the api will add the barcode into another table to be added to the previous database.
+### Note:
+the database authentication information in application.properties is purposefully not commited, if you would like to see the api at work
+send harajlyhassan@gmail.com an email and he will turn on the pcf instance that it is deployed to(its turned off to save some money as the author develops the api locally).
 ## Running:
 mvn package
 
