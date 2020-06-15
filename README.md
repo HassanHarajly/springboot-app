@@ -1,5 +1,6 @@
 # springboot-app
 The purpose of this app is to query an aws database to look for an item by a barcode number and return information about that item.
+
 Currently the functionility is:
 The api queries the aws table to see if the product has been stored in there if it has it will return the information, if not
 the api will add the barcode into another table to be added to the previous database.
