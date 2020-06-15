@@ -7,7 +7,7 @@ The api queries the aws table to see if the product has been stored in there if 
 the api will add the barcode into another table to be added to the previous database.
 ### Note:
 the database authentication information in application.properties is purposefully not commited, if you would like to see the api at work
-send harajlyhassan@gmail.com an email and he will turn on the pcf instance that it is deployed to(its turned off to save some money as the author develops the api locally).
+send harajlyhassan@gmail.com an email and he will turn on the pcf instance that it is deployed (its turned off to save some money as the author develops the api locally).
 ## Running:
 mvn package
 
