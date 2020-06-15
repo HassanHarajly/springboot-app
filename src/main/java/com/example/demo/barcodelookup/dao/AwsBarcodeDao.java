@@ -40,6 +40,7 @@ public class AwsBarcodeDao implements ItemLookupDao {
         return products.get(0);
         }
         else{
+            addNewBarcode(barcode);
             return new Product("no product exists","000");
         }
 
@@ -58,6 +59,12 @@ public class AwsBarcodeDao implements ItemLookupDao {
         else{
             return new Product("no product exists not saving","000");
         }
+    }
+
+    public void addNewBarcode(String barcode)
+    {
+        String insertProductQuery  = "INSERT INTO BarcodeNotFound (barcode) VALUES(" +barcode+ ")";
+        jdbcTemplate.update(insertProductQuery);
     }
     private  static  class ProductRowMapper implements  RowMapper<Product>{
 
