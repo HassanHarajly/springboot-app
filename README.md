@@ -13,13 +13,13 @@ mvn package
 
 cf push hassansApplication -p /c/Users/hassan/projects/springboot-app/target/demo-0.0.1-SNAPSHOT.jar
 
-Posting:
+Post Request:
 ===
-hassanmharajlyapp.cfapps.io/api/v1/person
-localhost:8080/api/v1/person
-Getting:
+localhost:8080/api/v1/itemLookup/saveifnotfound/0012612 (this number is an id number  representing an item barcode)
+
+Get Request:
 ===
-localhost:8080/api/v1/person/getMapping
+localhost:8080/api/v1/itemLookup/dontsaveifnotfound/0012612 (this number is an id number representing an item barcode)
 
 ## Testing:
 run "mvn test" command
