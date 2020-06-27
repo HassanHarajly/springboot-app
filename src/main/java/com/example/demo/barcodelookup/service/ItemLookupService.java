@@ -1,5 +1,4 @@
 package com.example.demo.barcodelookup.service;
-
 import com.example.demo.barcodelookup.dao.AwsBarcodeDao;
 import com.example.demo.barcodelookup.model.Product;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,8 +17,12 @@ public class ItemLookupService {
     {
         return awsBarcodeDao.returnProductSaveIfNotFound(barcode);
     }
-    public Product findBarCodeDontSaveIfNotFound(String barcode)
+    
+    public Product ifDoesntExistUseVendorData(String barcode)
     {
-        return awsBarcodeDao.returnProductDontSaveIfNotFound(barcode);
+
+        return awsBarcodeDao.callThirdPartyApiIfDoesntExist(barcode);
+
     }
+
 }

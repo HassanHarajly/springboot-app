@@ -1,38 +1,30 @@
 package com.example.demo.barcodelookup.dao;
-
 import com.example.demo.barcodelookup.model.Product;
-import com.example.demo.tutorial.dao.PersonDataAccessService;
-import com.example.demo.tutorial.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Repository("MySql")
 
 public class AwsBarcodeDao implements ItemLookupDao {
 
     private JdbcTemplate jdbcTemplate;
-
+    private List<Product> products = new ArrayList<>();
 
     public AwsBarcodeDao(@Autowired JdbcTemplate jdbc)
     {
         jdbcTemplate=jdbc;
-
     }
-
-    private List<Product> products = new ArrayList<>();
 
     public Product returnProductSaveIfNotFound(String barcode)
     {
-
         final String selectProductSql = "SELECT barcodeOrUpc, productName FROM productData WHERE barCodeOrUpc ="+barcode+";";
+
         products =   jdbcTemplate.query(selectProductSql, new ProductRowMapper());
 
         if (products.size()>0)
@@ -41,31 +33,44 @@ public class AwsBarcodeDao implements ItemLookupDao {
         }
         else{
             addNewBarcode(barcode);
-            return new Product("no product exists","000");
+            return callBarCodeApi(barcode);
         }
-
     }
 
-    public Product returnProductDontSaveIfNotFound(String barcode)
+// we still add the product to the BarcodeNotFound database since the acceptable use policy of the 3rdparty api states users cant use it to mine data or copy it so well try to gather it later.
+    public Product callThirdPartyApiIfDoesntExist(String barcode)
     {
-
         final String selectProductSql = "SELECT barcodeOrUpc, productName FROM productData WHERE barCodeOrUpc ="+barcode+";";
         products =   jdbcTemplate.query(selectProductSql, new ProductRowMapper());
-
         if (products.size()>0)
         {
             return products.get(0);
         }
         else{
-            return new Product("no product exists not saving","000");
+            addNewBarcode(barcode);
+            return callBarCodeApi(barcode);
         }
     }
 
+    Product callBarCodeApi(String barcode)
+    {
+        try {
+            ThirdPartyApi TPA = new ThirdPartyApi(barcode);
+            return TPA.queryPopularApiForPossibleMatch();
+        }catch (Exception ex)
+        {
+            System.out.println("ThirdPartyApi class has thrown an exception see details below for stack trace");
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    //this database is for data gathering at a later date, if the user asks for a barcode that we dont have stored in productData we add it.
     public void addNewBarcode(String barcode)
     {
         String insertProductQuery  = "INSERT IGNORE INTO BarcodeNotFound (barcode) VALUES(" +barcode+ ")";
         jdbcTemplate.update(insertProductQuery);
     }
+
     private  static  class ProductRowMapper implements  RowMapper<Product>{
 
         @Override
