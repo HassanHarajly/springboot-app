@@ -58,7 +58,9 @@ to verify same enter the "which mvn" command you should see something similar to
 Download pcf for deployment:
 https://docs.pivotal.io/pcf-dev/install-windows.html
 
-## environment specific build commands:
+## environment specific build commands, this will switch the application.properties based on the environment:
 mvn clean install -Dactive.profile=dev
+
 mvn clean install -Dactive.profile=qa
+
 mvn clean install -Dactive.profile=prod
