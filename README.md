@@ -8,8 +8,9 @@ the api will add the barcode into another table to be added to the previous data
 ### Note:
 the database authentication information in application.properties is purposefully not commited, if you would like to see the api at work
 send harajlyhassan@gmail.com an email and he will turn on the pcf instance that it is deployed (its turned off to save some money as the author develops the api locally).
-## Running:
-mvn package
+## building:
+./gradlew build
+
 
 java -jar target/demo-0.0.1-SNAPSHOT.jar
 
@@ -50,17 +51,13 @@ make sure the jdk is put on your path in the console to check type in "which jav
 /c/Program Files/Java/jdk1.8.0_251/bin/java
 
 
-Download Apache maven 3.6.3 from:
-https://maven.apache.org/download.cgi
-to verify same enter the "which mvn" command you should see something similar to:
-/c/apache-maven-3.6.3/bin/mvn
+
 
 Download pcf for deployment:
 https://docs.pivotal.io/pcf-dev/install-windows.html
 
-## environment specific build commands, this will switch the application.properties based on the environment:
-mvn clean install -Dactive.profile=dev
+## environment specific running commands, this will switch the application.properties based on the environment:
+ java -jar libs/demo-0.0.1-SNAPSHOT.jar --spring.profiles.active=qa
+  java -jar libs/demo-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
+ java -jar libs/demo-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 
-mvn clean install -Dactive.profile=qa
-
-mvn clean install -Dactive.profile=prod
