@@ -19,7 +19,7 @@ public class ThirdPartyApi{
     //using jackson json parser to map api response to Product object.
     public Product queryPopularApiForPossibleMatch() throws JSONException, IOException {
         try {
-        JSONObject json = readJsonFromUrl("https://api.barcodelookup.com/v2/products?barcode="+barcode+"&formatted=y&key=5c6e4oawe75xlm0fptc6rvgr9tn4uz");
+        JSONObject json = readJsonFromUrl("https://api.barcodelookup.com/v2/products?barcode="+barcode+"&formatted=y&key=bfboxoijn4b5t7hbrqsr6yvlps0kgo");
         ObjectMapper objectMapper = new ObjectMapper();
         Product product = objectMapper.readValue(json.getJSONArray("products").get(0).toString(), Product.class);
             return product;
@@ -27,8 +27,9 @@ public class ThirdPartyApi{
         catch(Exception ex)
         {
             //todo create a logger for error handling
+            // cascade error message to controller
               System.out.println("The api Has encountered an error the barcode in question is:"+barcode);
-              return new Product("","");
+              return new Product("n/a","no product found");
         }
 
 
