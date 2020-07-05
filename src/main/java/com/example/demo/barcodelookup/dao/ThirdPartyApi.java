@@ -11,13 +11,14 @@ public class ThirdPartyApi{
 
     private String barcode;
 
-    ThirdPartyApi(String barcode)
+    ThirdPartyApi()
     {
-        this.barcode=barcode;
     }
 
     //using jackson json parser to map api response to Product object.
-    public Product queryPopularApiForPossibleMatch() throws JSONException, IOException {
+    public Product queryPopularApiForPossibleMatch(String barcode) throws JSONException, IOException {
+        this.barcode=barcode;
+
         try {
         JSONObject json = readJsonFromUrl("https://api.barcodelookup.com/v2/products?barcode="+barcode+"&formatted=y&key=bfboxoijn4b5t7hbrqsr6yvlps0kgo");
         ObjectMapper objectMapper = new ObjectMapper();

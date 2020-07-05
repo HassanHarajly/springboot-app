@@ -15,6 +15,7 @@ public class AwsBarcodeDao implements ItemLookupDao {
 
     private JdbcTemplate jdbcTemplate;
     private List<Product> products = new ArrayList<>();
+    private ThirdPartyApi TPA = new ThirdPartyApi();
 
     public AwsBarcodeDao(@Autowired JdbcTemplate jdbc)
     {
@@ -52,11 +53,10 @@ public class AwsBarcodeDao implements ItemLookupDao {
         }
     }
 
-    Product callBarCodeApi(String barcode)
+    public Product callBarCodeApi(String barcode)
     {
         try {
-            ThirdPartyApi TPA = new ThirdPartyApi(barcode);
-            return TPA.queryPopularApiForPossibleMatch();
+            return TPA.queryPopularApiForPossibleMatch(barcode);
         }catch (Exception ex)
         {
             System.out.println("ThirdPartyApi class has thrown an exception see details below for stack trace");

@@ -1,11 +1,15 @@
 package com.example.demo.barcodelookup.dao;
 import com.example.demo.barcodelookup.model.Product;
+import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,6 +18,10 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class AwsBarcodeDaoTest {
+
+    @Spy
+    @InjectMocks
+    private ThirdPartyApi TPA;
 
     @InjectMocks
     AwsBarcodeDao awsBarcodeDao;
@@ -29,7 +37,6 @@ class AwsBarcodeDaoTest {
         product= awsBarcodeDao.returnProductSaveIfNotFound("item");
         assertEquals("item", product.getProductName());
         assertEquals("123456789111", product.getProductBarcode());
-
     }
 
     @Test
@@ -42,13 +49,29 @@ class AwsBarcodeDaoTest {
     }
 
     @Test
-    void callThirdPartyApiIfDoesntExist() {
+    void callThirdPartyApiIfDoesntExistFoundMatch() {
+        products.add(new Product("hello","000000000000"));
+        when(jdbcTemplate.query(any(String.class), any(RowMapper.class))).thenReturn(products);
+        product = awsBarcodeDao.callThirdPartyApiIfDoesntExist("000000000000");
+        assertEquals("000000000000", product.getProductBarcode());
+    }
+    @Test
+    void callBarCodeApiAndThrowException() throws IOException, JSONException {
+        when(TPA.queryPopularApiForPossibleMatch("")).thenThrow(new IOException("233"));
+
+
+        product = awsBarcodeDao.callBarCodeApi("");
+        assertEquals("n/a", product.getProductName());
+        assertEquals("no product found", product.getProductBarcode());
     }
 
     @Test
-    void callBarCodeApi() {
+    void callThirdPartyApiIfDoesntExistNotFound() {
+        products.add(new Product("hello","000000000000"));
+        when(jdbcTemplate.query(any(String.class), any(RowMapper.class))).thenReturn(new ArrayList<Product>() );
+        product = awsBarcodeDao.callThirdPartyApiIfDoesntExist("0");
+        assertEquals(product.getProductName(),"n/a");
     }
-
     @Test
     void addNewBarcode() {
     }

@@ -19,7 +19,7 @@ class BarcodeControllerTest {
     Product product = new Product("testing","123");
 
     @Test
-    void addNewBarCode() {
+    void returnValidBarcode() {
         when(itemLookupService.findBarCodeSaveIfNotFound("123"))
                 .thenReturn(product);
         Product testProduct = barcodeController.addNewBarCode("123");
