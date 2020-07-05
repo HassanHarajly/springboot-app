@@ -33,7 +33,7 @@ public class AwsBarcodeDao implements ItemLookupDao {
         }
         else{
             addNewBarcode(barcode);
-            return callBarCodeApi(barcode);
+            return new Product("n/a","n/a");
         }
     }
 
