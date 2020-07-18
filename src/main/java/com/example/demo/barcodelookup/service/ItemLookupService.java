@@ -4,6 +4,8 @@ import com.example.demo.barcodelookup.model.Product;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ItemLookupService {
 
@@ -13,15 +15,17 @@ public class ItemLookupService {
         this.awsBarcodeDao = awsBarcodeDao;
     }
 
-    public Product findBarCodeSaveIfNotFound(String barcode)
+    public Optional<Product> findBarCodeSaveIfNotFound(String barcode)
     {
-        return awsBarcodeDao.returnProductSaveIfNotFound(barcode);
+        Optional<Product> optionalProduct = Optional.ofNullable(awsBarcodeDao.returnProductSaveIfNotFound(barcode));
+        return optionalProduct;
     }
     
-    public Product ifDoesntExistUseVendorData(String barcode)
+    public  Optional<Product> ifDoesntExistUseVendorData(String barcode)
     {
 
-        return awsBarcodeDao.callThirdPartyApiIfDoesntExist(barcode);
+        Optional<Product> optionalProduct = Optional.ofNullable(awsBarcodeDao.callThirdPartyApiIfDoesntExist(barcode));
+        return optionalProduct;
 
     }
 

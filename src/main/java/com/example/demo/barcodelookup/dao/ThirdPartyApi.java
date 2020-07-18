@@ -3,20 +3,29 @@ import com.example.demo.barcodelookup.model.Product;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
+@Component
+public class ThirdPartyApi {
 
-public class ThirdPartyApi{
-
+    @Value("${loggingUniqueIdentifier}")
+    private String logID;
+    Logger logger = LoggerFactory.getLogger(ThirdPartyApi.class);
     private String barcode;
-
     ThirdPartyApi()
     {
     }
 
     //using jackson json parser to map api response to Product object.
     public Product queryPopularApiForPossibleMatch(String barcode) throws JSONException, IOException {
+
         this.barcode=barcode;
 
         try {
@@ -29,8 +38,8 @@ public class ThirdPartyApi{
         {
             //todo create a logger for error handling
             // cascade error message to controller
-              System.out.println("The api Has encountered an error the barcode in question is:"+barcode);
-              return new Product("n/a","no product found");
+            logger.info(logID + "The api Has encountered an error the barcode in question is:"+barcode);
+              return null;
         }
 
 

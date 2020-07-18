@@ -4,10 +4,12 @@ import com.example.demo.barcodelookup.model.Product;
 import com.example.demo.barcodelookup.service.ItemLookupService;
 import com.mysql.cj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RequestMapping("/api/v1/itemLookup")
 @RestController
@@ -22,19 +24,13 @@ public class BarcodeController {
 
 
     @PostMapping(path = "ifDoesntExistStoreForDataGathering/{id}")
-    public Product addNewBarCode( @Valid @NonNull @PathVariable("id")String id)
+    public Optional<Product> addNewBarCode(@Valid @NonNull @PathVariable("id")String id)
     {
         return itemLookupService.findBarCodeSaveIfNotFound(id);
     }
 
     @GetMapping(path = "ifDoesntExistUseVendorData/{id}")
-    public Product ifDoesntExistUseVendorData( @Valid @NonNull @PathVariable("id")String id){
-        if (StringUtils.isStrictlyNumeric(id)) {
-            return itemLookupService.ifDoesntExistUseVendorData(id);
-        }
-        else{
-            //todo implement error message for invalid format
-            return null;
-        }
+    public Object ifDoesntExistUseVendorData(@Valid @NonNull @PathVariable("id")String id) {
+        return itemLookupService.ifDoesntExistUseVendorData(id).orElseThrow(() -> new RuntimeException("Our database and 3rd party api has not found the barcode please check if api key is still valid"));
     }
 }
