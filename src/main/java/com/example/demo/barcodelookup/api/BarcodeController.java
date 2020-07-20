@@ -2,9 +2,8 @@ package com.example.demo.barcodelookup.api;
 
 import com.example.demo.barcodelookup.model.Product;
 import com.example.demo.barcodelookup.service.ItemLookupService;
-import com.mysql.cj.util.StringUtils;
+import com.example.demo.tutorial.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +15,7 @@ import java.util.Optional;
 public class BarcodeController {
 
     private final ItemLookupService itemLookupService;
-
+    private EmailService emailService = new EmailService();
     @Autowired
     public BarcodeController(ItemLookupService itemLookupService) {
         this.itemLookupService = itemLookupService;
@@ -33,4 +32,16 @@ public class BarcodeController {
     public Object ifDoesntExistUseVendorData(@Valid @NonNull @PathVariable("id")String id) {
         return itemLookupService.ifDoesntExistUseVendorData(id).orElseThrow(() -> new RuntimeException("Our database and 3rd party api has not found the barcode please check if api key is still valid"));
     }
+
+
+
+    public void SendEmail() {
+        emailService.setMsg("email works.");
+        emailService.setRecipientEmail("harajlyhassan@gmail.com");
+        emailService.setSubject("hassan is coding");
+        emailService.sendEmail();
+
+    }
+
+
 }
