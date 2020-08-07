@@ -4,5 +4,8 @@ import com.example.demo.barcodelookup.model.Product;
 
 public interface ItemLookupDao {
 
-    public Product returnProductSaveIfNotFound(String  barcode);
+    Product returnProductSaveIfNotFound(String  barcode);
+    Product callThirdPartyApiIfDoesntExist(String barcode);
+    Product callBarCodeApi(String barcode);
+    void addNewBarcode(String barcode);
 }
