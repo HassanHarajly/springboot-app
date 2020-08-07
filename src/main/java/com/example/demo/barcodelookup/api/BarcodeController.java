@@ -34,7 +34,7 @@ public class BarcodeController {
     }
 
 
-
+    @GetMapping(path = "email")
     public void SendEmail() {
         emailService.setMsg("email works.");
         emailService.setRecipientEmail("harajlyhassan@gmail.com");
