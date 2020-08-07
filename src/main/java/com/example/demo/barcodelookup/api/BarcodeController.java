@@ -1,7 +1,9 @@
 package com.example.demo.barcodelookup.api;
 
+import com.example.demo.barcodelookup.model.Email;
 import com.example.demo.barcodelookup.model.Product;
 import com.example.demo.barcodelookup.service.ItemLookupService;
+import com.example.demo.tutorial.model.Person;
 import com.example.demo.tutorial.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -34,14 +36,13 @@ public class BarcodeController {
     }
 
 
-    @GetMapping(path = "email")
-    public void SendEmail() {
-        emailService.setMsg("email works.");
-        emailService.setRecipientEmail("harajlyhassan@gmail.com");
-        emailService.setSubject("hassan is coding");
+    @PostMapping(path = "email")
+    public void SendEmail( @RequestBody  @Valid @NonNull Email emailObject) {
+
+        emailService.setMsg(emailObject.getMessage());
+        emailService.setRecipientEmail(emailObject.getRecipient());
+        emailService.setSubject(emailObject.getSubject());
         emailService.sendEmail();
 
     }
-
-
 }
