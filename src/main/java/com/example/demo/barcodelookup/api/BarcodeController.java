@@ -1,10 +1,10 @@
 package com.example.demo.barcodelookup.api;
-
 import com.example.demo.barcodelookup.model.Email;
 import com.example.demo.barcodelookup.model.Product;
 import com.example.demo.barcodelookup.service.ItemLookupService;
-import com.example.demo.tutorial.model.Person;
-import com.example.demo.tutorial.service.EmailService;
+import com.example.demo.barcodelookup.service.EmailService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +22,7 @@ public class BarcodeController {
     public BarcodeController(ItemLookupService itemLookupService) {
         this.itemLookupService = itemLookupService;
     }
+    Logger logger = LoggerFactory.getLogger(BarcodeController.class);
 
 
     @PostMapping(path = "ifDoesntExistStoreForDataGathering/{id}")
@@ -39,10 +40,16 @@ public class BarcodeController {
     @PostMapping(path = "email")
     public void SendEmail( @RequestBody  @Valid @NonNull Email emailObject) {
 
+        try {
+
         emailService.setMsg(emailObject.getMessage());
         emailService.setRecipientEmail(emailObject.getRecipient());
         emailService.setSubject(emailObject.getSubject());
-        emailService.sendEmail();
-
+        emailService.sendMessageWithAttachment();
+        }
+        catch (Exception exception)
+        {
+            exception.printStackTrace();
+        }
     }
 }

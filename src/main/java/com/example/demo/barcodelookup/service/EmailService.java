@@ -1,8 +1,14 @@
-package com.example.demo.tutorial.service;
+package com.example.demo.barcodelookup.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmailService {
@@ -11,8 +17,8 @@ public class EmailService {
     private String recipientEmail;
     private String msg;
     private String subject;
-// todo add sender email information to application.props
-    public void sendEmail() {
+    private JavaMailSender emailSender;
+    public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
@@ -26,17 +32,35 @@ public class EmailService {
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("springboot5478@gmail.com");
-        String to=getRecipientEmail();
-        String subject=getSubject();
-        String text=getMsg();
-
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        mailSender.send(message);
+        return mailSender;
     }
+
+
+
+    public void sendMessageWithAttachment() {
+        try{
+        emailSender = getJavaMailSender();
+        MimeMessage message = emailSender.createMimeMessage();
+
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+        helper.setFrom("springboot5478@gmail.com");
+        helper.setTo(getRecipientEmail());
+        helper.setSubject(getSubject());
+        helper.setText(getMsg(),true);
+
+/*        FileSystemResource file
+                = new FileSystemResource(new File(pathToAttachment));
+        helper.addAttachment("Invoice", file);*/
+
+        emailSender.send(message);
+        }   catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
     public String getRecipientEmail() {
         return recipientEmail;
     }
