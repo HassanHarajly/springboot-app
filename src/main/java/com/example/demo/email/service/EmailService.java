@@ -1,15 +1,17 @@
 package com.example.demo.email.service;
-
 import com.example.demo.email.model.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.Properties;
 
 public class EmailService {
@@ -38,7 +40,21 @@ public class EmailService {
     }
 
 
-
+public String getHTML()
+{
+    StringBuilder contentBuilder = new StringBuilder();
+    try{
+        BufferedReader in = new BufferedReader(new FileReader("src/main/java/com/example/demo/email-assets/email.html"));
+        String tmp;
+        while((tmp=in.readLine()) !=null)
+        {
+            contentBuilder.append(tmp);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return contentBuilder.toString();
+}
     public void sendMessageWithAttachment() {
         try{
         emailSender = getJavaMailSender();
@@ -49,11 +65,12 @@ public class EmailService {
         helper.setFrom("springboot5478@gmail.com");
         helper.setTo(emailContent.getRecipient());
         helper.setSubject(emailContent.getSubject());
-        helper.setText(emailContent.getMessage(),true);
 
-/*        FileSystemResource file
-                = new FileSystemResource(new File(pathToAttachment));
-        helper.addAttachment("Invoice", file);*/
+        helper.setText(getHTML(),true);
+
+        FileSystemResource file
+                = new FileSystemResource(new File("src/main/java/com/example/demo/email-assets/HASSAN RESUME.docx"));
+        helper.addAttachment("hassansResume.docx", file);
 
         emailSender.send(message);
         }   catch (Exception e)
