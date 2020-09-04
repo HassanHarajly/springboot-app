@@ -1,4 +1,4 @@
-package com.example.demo.barcodelookup.model;
+package com.example.demo.email.model;
 
 public class Email {
 

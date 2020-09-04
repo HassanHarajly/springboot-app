@@ -1,5 +1,6 @@
-package com.example.demo.barcodelookup.service;
+package com.example.demo.email.service;
 
+import com.example.demo.email.model.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
@@ -15,6 +16,7 @@ public class EmailService {
 
 
     private String recipientEmail;
+    private Email emailContent;
     private String msg;
     private String subject;
     private JavaMailSender emailSender;
@@ -45,9 +47,9 @@ public class EmailService {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
         helper.setFrom("springboot5478@gmail.com");
-        helper.setTo(getRecipientEmail());
-        helper.setSubject(getSubject());
-        helper.setText(getMsg(),true);
+        helper.setTo(emailContent.getRecipient());
+        helper.setSubject(emailContent.getSubject());
+        helper.setText(emailContent.getMessage(),true);
 
 /*        FileSystemResource file
                 = new FileSystemResource(new File(pathToAttachment));
@@ -61,28 +63,8 @@ public class EmailService {
     }
 
 
-    public String getRecipientEmail() {
-        return recipientEmail;
-    }
 
-    public void setRecipientEmail(String recipientEmail) {
-        this.recipientEmail = recipientEmail;
-    }
-
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setEmailContent(Email emailContent) {
+        this.emailContent=emailContent;
     }
 }
