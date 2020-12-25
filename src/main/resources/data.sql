@@ -1,3 +1,4 @@
+DROP TABLE shop_information;
 CREATE TABLE shop_information (
   id INT AUTO_INCREMENT  PRIMARY KEY,
   shop_name VARCHAR(100) NOT NULL,
