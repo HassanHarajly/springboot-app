@@ -25,4 +25,8 @@ INSERT INTO product_information (shop_id, product_name, product_quantity, produc
 INSERT INTO shop_information (shop_name, shop_street_address, shop_zip, shop_state) VALUES
   ('hassans-store', '111 main st', '48127','MI'),
     ('hassans-store1', '222 main st', '48126','ohio'),
-    ('hassans-store', '333 main st', '48125','new york');
+    ('hassans-store', '333 main st', '48125','new york'),
+      ('tunas-store', '111 main st', '48127','MI'),
+        ('zaituns-store1', '222 main st', '48126','ohio'),
+        ('2na-store', '333 main st', '48127','new york');
+

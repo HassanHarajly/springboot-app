@@ -18,11 +18,12 @@ public class ShopRegistrationController {
     ShopRepository shopRepository;
     @PostMapping(path = "addNewShop")
     public List<Shop> addNewBarCode(@RequestBody @Valid @NonNull Shop shop) {
+        Shop shop1 = new Shop("2","3s","ss","mi");
+        System.out.println(shop1.getId());
 
-      //  shopRepository.save(new Shop(1,"2","3s","ss","mi"));
         final List<Shop> shops = new ArrayList<>();
         shopRepository.findAll().forEach(Shop -> shops.add(Shop));
-        return shops;
+        return shopRepository.findByZip("48127");
 
     }
 

@@ -18,8 +18,7 @@ public class Shop implements ShopInterface {
     public Shop() {
     }
 
-    public Shop(int id, String shop_name, String shop_street_address, String shop_zip, String shop_state) {
-        this.id = id;
+    public Shop(String shop_name, String shop_street_address, String shop_zip, String shop_state) {
         this.shop_name = shop_name;
         this.shop_street_address = shop_street_address;
         this.shop_zip = shop_zip;
