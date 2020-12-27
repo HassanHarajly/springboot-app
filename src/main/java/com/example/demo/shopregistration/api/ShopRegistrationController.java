@@ -17,17 +17,18 @@ public class ShopRegistrationController {
     @Autowired
     ShopRepository shopRepository;
     @PostMapping(path = "addNewShop")
-    public List<Shop> addNewBarCode(@RequestBody @Valid @NonNull Shop shop) {
-        Shop shop1 = new Shop("2","3s","ss","mi");
-        System.out.println(shop1.getId());
-
-        final List<Shop> shops = new ArrayList<>();
-        shopRepository.findAll().forEach(Shop -> shops.add(Shop));
-        return shopRepository.findByZip("48127");
+    public List<Shop> addNewShop(@RequestBody @Valid @NonNull Shop shop) {
+       shopRepository.insertshop(shop.getShop_name(),shop.getShop_street_address(),shop.getShop_zip(),shop.getShop_state());
+        return shopRepository.findByName(shop.getShop_name());
 
     }
 
-
+    @GetMapping(path = "getAllShops")
+    public List<Shop> getAllShops() {
+        final List<Shop> shops = new ArrayList<>();
+        shopRepository.findAll().forEach(Shop -> shops.add(Shop));
+        return shops;
+    }
 
 
 
