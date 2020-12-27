@@ -17,10 +17,8 @@ public class ShopRegistrationController {
     @Autowired
     ShopRepository shopRepository;
     @PostMapping(path = "addNewShop")
-    public List<Shop> addNewShop(@RequestBody @Valid @NonNull Shop shop) {
+    public void addNewShop(@RequestBody @Valid @NonNull Shop shop) {
        shopRepository.insertshop(shop.getShop_name(),shop.getShop_street_address(),shop.getShop_zip(),shop.getShop_state());
-        return shopRepository.findByName(shop.getShop_name());
-
     }
 
     @GetMapping(path = "getAllShops")
@@ -30,6 +28,9 @@ public class ShopRegistrationController {
         return shops;
     }
 
-
+    @GetMapping(path = "getShopByName")
+    public List<Shop> getShopByName(@RequestParam String name) {
+        return shopRepository.findByName(name);
+    }
 
 }

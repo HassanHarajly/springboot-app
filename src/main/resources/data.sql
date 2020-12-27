@@ -18,15 +18,16 @@ CREATE TABLE product_information (
 
 INSERT INTO product_information (shop_id, product_name, product_quantity, product_barcode,product_price) VALUES
   (1, 'water bottle', 100,'0012612',50),
-   (2, 'computer', 100,'0012312',1000),
-      (3, 'mouse', 100,'5512312',2000);
+  (2, 'computer', 100,'0012312',1000),
+  (3, 'mouse', 100,'5512312',2000);
 
 
 INSERT INTO shop_information (shop_name, shop_street_address, shop_zip, shop_state) VALUES
   ('hassans-store', '111 main st', '48127','MI'),
-    ('hassans-store1', '222 main st', '48126','ohio'),
-    ('hassans-store', '333 main st', '48125','new york'),
-      ('tunas-store', '111 main st', '48127','MI'),
-        ('zaituns-store1', '222 main st', '48126','ohio'),
-        ('2na-store', '333 main st', '48127','new york');
+  ('kmart', '222 main st', '48126','ohio'),
+  ('target', '333 main st', '48125','new york'),
+  ('walmart', '111 main st', '48127','MI'),
+  ('zaituns', '222 main st', '48126','ohio'),
+  ('al-bashas', '222 main st', '48126','ohio'),
+  ('tjmax', '333 main st', '48127','new york');
 
