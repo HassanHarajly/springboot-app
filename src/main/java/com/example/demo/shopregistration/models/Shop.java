@@ -14,8 +14,25 @@ public class Shop implements ShopInterface {
     private String shop_street_address;
     private String shop_zip;
     private String shop_state;
-
+    private double SHOP_LATITUDE;
+    private double SHOP_LONGITUDE;
     public Shop() {
+    }
+
+    public double getSHOP_LATITUDE() {
+        return SHOP_LATITUDE;
+    }
+
+    public void setSHOP_LATITUDE(double SHOP_LATITUDE) {
+        this.SHOP_LATITUDE = SHOP_LATITUDE;
+    }
+
+    public double getSHOP_LONGITUDE() {
+        return SHOP_LONGITUDE;
+    }
+
+    public void setSHOP_LONGITUDE(double SHOP_LONGITUDE) {
+        this.SHOP_LONGITUDE = SHOP_LONGITUDE;
     }
 
     public Shop(String shop_name, String shop_street_address, String shop_zip, String shop_state) {

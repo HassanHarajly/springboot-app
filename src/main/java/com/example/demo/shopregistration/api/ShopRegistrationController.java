@@ -35,9 +35,9 @@ public class ShopRegistrationController {
         return shopRepository.findByName(name);
     }
 
-//    @GetMapping(path = "getShopByName")
-//    public List<Shop> getPojo() {
-//        return geoCacheApiService.getApiResponse();
-//    }
-//
+    @GetMapping(path = "getProximalShop")
+    public List<Shop> getProximalShops(@RequestParam double longitude,@RequestParam double latitude) {
+        return shopRepository.getProximalShops(latitude,longitude);
+    }
+
 }
