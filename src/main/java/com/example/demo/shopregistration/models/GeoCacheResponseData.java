@@ -2,9 +2,11 @@ package com.example.demo.shopregistration.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-    public class data
+@JsonRootName("data")
+    public class GeoCacheResponseData
     {
         private double latitude;
 

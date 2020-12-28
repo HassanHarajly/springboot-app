@@ -11,5 +11,7 @@ class GeoCacheApiServiceTest {
     void getApiResponse() {
         assertEquals(geoCacheApiService.getApiResponse("1600 Pennsylvania Ave%20NW, Washington DC").getData().get(0).getLatitude()
                ,38.897675);
+        assertEquals(geoCacheApiService.getApiResponse("1600 Pennsylvania Ave%20NW, Washington DC").getData().get(0).getLongitude()
+                ,-77.036547);
     }
 }

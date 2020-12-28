@@ -6,13 +6,13 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GeoCacheResponse {
 
-    private List<data> data;
+    private List<GeoCacheResponseData> geoCacheResponseData;
 
-    public void setData(List<data> data){
-        this.data = data;
+    public void setData(List<GeoCacheResponseData> data){
+        this.geoCacheResponseData = data;
     }
-    public List<data> getData(){
-        return this.data;
+    public List<GeoCacheResponseData> getData(){
+        return this.geoCacheResponseData;
     }
 
 }
