@@ -2,6 +2,7 @@ package com.example.demo.shopregistration.api;
 
 import com.example.demo.shopregistration.dao.repositories.ShopRepository;
 import com.example.demo.shopregistration.models.Shop;
+import com.example.demo.shopregistration.services.GeoCacheApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 public class ShopRegistrationController {
 
+    GeoCacheApiService geoCacheApiService = new GeoCacheApiService();
     @Autowired
     ShopRepository shopRepository;
     @PostMapping(path = "addNewShop")
@@ -33,4 +35,9 @@ public class ShopRegistrationController {
         return shopRepository.findByName(name);
     }
 
+//    @GetMapping(path = "getShopByName")
+//    public List<Shop> getPojo() {
+//        return geoCacheApiService.getApiResponse();
+//    }
+//
 }
