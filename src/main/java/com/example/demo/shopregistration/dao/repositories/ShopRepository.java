@@ -29,4 +29,10 @@ public interface ShopRepository extends CrudRepository<Shop, Integer> {
             nativeQuery = true)
     void insertshop(@Param("shop_name") String shop_name, @Param("shop_street_address") String shop_street_address,
                     @Param("shop_zip") String shop_zip, @Param("shop_state") String shop_state);
+
+    @Query(
+            value =
+    "SELECT id, (3959 *acos(cos(radians(:user_latitude)) *cos(radians(shop_information.shop_latitude)) *cos(radians(shop_information.shop_latitude) -radians(:user_longitude)) +sin(radians(:user_latitude)) *sin(radians(shop_information.shop_latitude )))) AS distance FROM shop_information HAVING distance < 28 ORDER BY distance LIMIT 0, 20",
+    nativeQuery = true)
+    List<Shop> getProximalShops(@Param("user_latitude") Double userlatitude,@Param("user_longitude") Double userlongitude);
 }

@@ -11,7 +11,7 @@ public class GeoCacheApiService {
 
     public GeoCacheResponse getApiResponse(String address)
     {
-        String URL = positionStackGeoCacheUrl + "&query="+address;
+        String URL = positionStackGeoCacheUrl + "&query="+address+"country=usa";
         GeoCacheResponse data = restTemplate
                 .getForObject(URL, GeoCacheResponse.class);
 
