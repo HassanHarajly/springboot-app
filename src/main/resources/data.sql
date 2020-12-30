@@ -26,9 +26,9 @@ INSERT INTO product_information (shop_id, product_name, product_quantity, produc
   (3, 'mouse', 100,'5512312',2000,41.59716263210701, -83.5566008257482);
 
 
-INSERT INTO shop_information (shop_name, shop_street_address, shop_zip, shop_state, SHOP_LATITUDE, SHOP_LONGITUDE)VALUES
-  ('hassans-store', '111 main st', '48127','MI',42.345916365908124, -83.16365162629968),
-  ('kmart', '222 main st', '48126','ohio',42.37081942915661, -83.33668833120687),
-  ('target', '333 main st', '48125','new york',41.59716263210701, -83.5566008257482),
-  ('walmart', '111 main st', '48127','MI',41.59716263210701, -83.5566008257482);
+-- INSERT INTO shop_information (shop_name, shop_street_address, shop_zip, shop_state, SHOP_LATITUDE, SHOP_LONGITUDE)VALUES
+--   ('hassans-store', '111 main st', '48127','MI',42.345916365908124, -83.16365162629968),
+--   ('kmart', '222 main st', '48126','ohio',42.37081942915661, -83.33668833120687),
+--   ('target', '333 main st', '48125','new york',41.59716263210701, -83.5566008257482),
+--   ('walmart', '111 main st', '48127','MI',41.59716263210701, -83.5566008257482);
 
