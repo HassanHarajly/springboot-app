@@ -16,6 +16,16 @@ public class Shop implements ShopInterface {
     private String shop_state;
     private double SHOP_LATITUDE;
     private double SHOP_LONGITUDE;
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    private double distance;
     public Shop() {
     }
 
