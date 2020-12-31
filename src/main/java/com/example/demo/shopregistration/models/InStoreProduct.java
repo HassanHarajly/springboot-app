@@ -1,15 +1,21 @@
 package com.example.demo.shopregistration.models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-
-@Table(name = "shop_information")
-public class Product {
+@Getter
+@Setter
+@Table(name = "product_information")
+@NoArgsConstructor
+public class InStoreProduct {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    UUID id;
+    Long id;
     int shop_id;
     String product_name;
     int product_quantity;

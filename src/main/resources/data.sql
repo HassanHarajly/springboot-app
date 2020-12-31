@@ -8,9 +8,11 @@ CREATE TABLE shop_information (
   SHOP_LATITUDE DOUBLE NOT NULL,
   SHOP_LONGITUDE DOUBLE NOT NULL
 );
+//DROP TABLE product_information;
+DROP TABLE product_information;
 
 CREATE TABLE product_information (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
+  id LONG AUTO_INCREMENT  PRIMARY KEY,
   shop_id INT NOT NULL,
   product_name VARCHAR(100) NOT NULL,
   product_quantity INT NOT NULL,

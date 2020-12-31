@@ -25,7 +25,7 @@ public class Shop {
     private double SHOP_LONGITUDE;
     @Transient
     private double distance;
-    
+
     public Shop() {
     }
 
