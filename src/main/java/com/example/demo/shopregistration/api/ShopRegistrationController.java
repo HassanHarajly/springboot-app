@@ -20,7 +20,7 @@ public class ShopRegistrationController {
     ShopRepository shopRepository;
     @PostMapping(path = "addNewShop")
     public void addNewShop(@RequestBody @Valid @NonNull Shop shop) {
-       shopRepository.insertshop(shop.getShop_name(),shop.getShop_street_address(),shop.getShop_zip(),shop.getShop_state(),shop.getSHOP_LATITUDE(),shop.getSHOP_LONGITUDE());
+        shopRepository.save(shop);
     }
 
     @GetMapping(path = "getAllShops")
