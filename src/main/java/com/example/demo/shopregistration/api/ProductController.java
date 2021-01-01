@@ -3,10 +3,10 @@ package com.example.demo.shopregistration.api;
 import com.example.demo.shopregistration.dao.repositories.ProductRepository;
 import com.example.demo.shopregistration.models.InStoreProduct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,4 +25,17 @@ public class ProductController {
          return products;
     }
 
+    @PostMapping("addNewProduct")
+    public void insertNewProduct(@RequestBody @Valid @NonNull InStoreProduct inStoreProduct) {
+        productRepository.save(inStoreProduct);
+    }
+
+    @GetMapping("getProductByName")
+    List<InStoreProduct> getAllSimilarProducts(@RequestParam String name) {
+        List<InStoreProduct> products = new ArrayList<>();
+//        productRepository.findByName(name).forEach(product -> {
+//            products.add(product);
+//        });
+        return products;
+    }
 }

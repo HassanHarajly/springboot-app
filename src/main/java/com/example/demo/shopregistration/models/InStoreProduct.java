@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class InStoreProduct {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long id;
     int shop_id;
     String product_name;
