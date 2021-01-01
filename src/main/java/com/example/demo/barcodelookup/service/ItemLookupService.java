@@ -28,7 +28,6 @@ public class ItemLookupService {
 
         Optional<Product> optionalProduct = Optional.ofNullable(itemLookupDao.callThirdPartyApiIfDoesntExist(barcode));
         return optionalProduct;
-
     }
 
 }
