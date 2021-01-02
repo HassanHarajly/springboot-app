@@ -2,6 +2,7 @@ package com.example.demo.shopregistration.api;
 
 import com.example.demo.shopregistration.dao.repositories.ProductRepository;
 import com.example.demo.shopregistration.models.InStoreProduct;
+import com.example.demo.shopregistration.models.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -37,5 +38,10 @@ public class ProductController {
 //            products.add(product);
 //        });
         return products;
+    }
+
+    @GetMapping(path = "getProximalProduct")
+    public List<InStoreProduct> getProximalShops(@RequestParam double longitude, @RequestParam double latitude) {
+        return productRepository.getProximalProduct(latitude,longitude);
     }
 }

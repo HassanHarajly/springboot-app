@@ -29,7 +29,7 @@ public interface ShopRepository extends CrudRepository<Shop, Integer> {
 
     @Query(
             value =
-    "SELECT top 20 *,   distance = GEOGRAPHY\\:\\:Point(42.345916365908124, -83.16365162629968, 4326).STDistance(GEOGRAPHY\\:\\:Point(SHOP_LATITUDE, SHOP_LONGITUDE, 4326)) / 1609.344 from shops ORDER BY distance ASC",
+    "SELECT top 20 *,   distance = GEOGRAPHY\\:\\:Point(:user_latitude, :user_longitude, 4326).STDistance(GEOGRAPHY\\:\\:Point(SHOP_LATITUDE, SHOP_LONGITUDE, 4326)) / 1609.344 from shops ORDER BY distance ASC",
     nativeQuery = true)
     List<Shop> getProximalShops(@Param("user_latitude") Double userlatitude,@Param("user_longitude") Double userlongitude);
 

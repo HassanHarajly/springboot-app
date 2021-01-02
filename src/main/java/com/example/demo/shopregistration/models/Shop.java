@@ -4,6 +4,7 @@ package com.example.demo.shopregistration.models;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @Table(name = "shops")
 @Getter
 @Setter
-
+@NoArgsConstructor
 public class Shop implements Serializable {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
@@ -35,8 +36,6 @@ public class Shop implements Serializable {
         this.SHOP_LONGITUDE = SHOP_LONGITUDE;
     }
 
-    public Shop() {
-    }
 
 
 
