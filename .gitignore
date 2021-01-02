@@ -28,7 +28,6 @@ target/
 .idea/**/dictionaries
 .idea/**/shelf
 
-applications.properties
 # Generated files
 .idea/**/contentModel.xml
 
