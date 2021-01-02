@@ -4,8 +4,10 @@ import com.example.demo.shopregistration.dao.repositories.ShopRepository;
 import com.example.demo.shopregistration.models.Shop;
 import com.example.demo.shopregistration.services.GeoCacheApiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +18,10 @@ public class ShopRegistrationController {
     GeoCacheApiService geoCacheApiService = new GeoCacheApiService();
     @Autowired
     ShopRepository shopRepository;
-//    @PostMapping(path = "addNewShop")
-//    public void addNewShop(@RequestBody @Valid @NonNull Shop shop) {
-//        shopRepository.save(shop);
-//    }
+    @PostMapping(path = "addNewShop")
+    public void addNewShop(@RequestBody @Valid @NonNull Shop shop) {
+        shopRepository.insertshop(shop.getShop_name(),shop.getShop_street_address(),shop.getShop_zip(),shop.getShop_state(),shop.getSHOP_LATITUDE(),shop.getSHOP_LONGITUDE());
+    }
 
     @GetMapping(path = "getAllShops")
     public List<Shop> getAllShops() {
@@ -28,14 +30,14 @@ public class ShopRegistrationController {
         return shops;
     }
 
-//    @GetMapping(path = "getShopByName")
-//    public List<Shop> getShopByName(@RequestParam String name) {
-//        return shopRepository.findByName(name);
-//    }
+    @GetMapping(path = "getShopByName")
+    public List<Shop> getShopByName(@RequestParam String name) {
+        return shopRepository.findByName(name);
+    }
 
-//    @GetMapping(path = "getProximalShop")
-//    public List<Shop> getProximalShops(@RequestParam double longitude,@RequestParam double latitude) {
-//        return shopRepository.getProximalShops(latitude,longitude);
-//    }
+    @GetMapping(path = "getProximalShop")
+    public List<Shop> getProximalShops(@RequestParam double longitude,@RequestParam double latitude) {
+        return shopRepository.getProximalShops(latitude,longitude);
+    }
 
 }
