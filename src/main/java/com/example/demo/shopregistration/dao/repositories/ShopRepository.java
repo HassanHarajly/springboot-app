@@ -15,7 +15,7 @@ public interface ShopRepository extends CrudRepository<Shop, Integer> {
 
 
     @Query(
-            value = "SELECT *,(-1) as distance FROM shop_information shops WHERE shops.shop_name = ?1",
+            value = "SELECT *,(-1) as distance FROM shops shop WHERE shops.shop_name = ?1",
             nativeQuery = true)
     List<Shop> findByName(String shop_name);
     @Transactional
@@ -36,7 +36,7 @@ public interface ShopRepository extends CrudRepository<Shop, Integer> {
     List<Shop> getProximalShops(@Param("user_latitude") Double userlatitude,@Param("user_longitude") Double userlongitude);
 
 
-    @Query(value = "SELECT *,(-1) as distance FROM shop_information",
+    @Query(value = "SELECT *,(-1) as distance FROM shops",
     nativeQuery = true
     )
     List<Shop> findAll();

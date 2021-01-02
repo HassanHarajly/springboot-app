@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "SHOP_INFORMATION")
+@Table(name = "shops")
 @Getter
 @Setter
 
