@@ -10,7 +10,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name = "product_information")
+@Table(name = "products")
 @NoArgsConstructor
 public class InStoreProduct {
     @Id
@@ -22,5 +22,5 @@ public class InStoreProduct {
     String product_barcode;
     double product_price;
     double latitude;
-    Double longitude;
+    double longitude;
 }
