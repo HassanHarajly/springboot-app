@@ -32,12 +32,8 @@ public class ProductController {
     }
 
     @GetMapping("getProductByName")
-    List<InStoreProduct> getAllSimilarProducts(@RequestParam String name) {
-        List<InStoreProduct> products = new ArrayList<>();
-            productRepository.findByName(name).forEach(product -> {
-                products.add(product);
-            });
-        return products;
+    List<InStoreProduct> getAllSimilarProducts(@RequestParam String name,@RequestParam double longitude, @RequestParam double latitude) {
+        return productRepository.findByNameAndProximity(name,latitude,longitude);
     }
 
     @GetMapping(path = "getProximalProduct")

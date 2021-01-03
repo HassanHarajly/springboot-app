@@ -15,8 +15,13 @@ public interface ProductRepository extends CrudRepository<InStoreProduct,Integer
             nativeQuery = true)
     List<InStoreProduct> getProximalProduct(@Param("user_latitude") Double userlatitude,@Param("user_longitude") Double userlongitude);
 // todo this logic works on keywords such as "computer water" should implement some logic that if this query returns nothing to try and split it by spaces and make additional queries to get as close as possible result.
-    @Query( value = "DECLARE @TestVariable AS VARCHAR(400) SET @TestVariable = 'computer water' SET @TestVariable = CONCAT('\"',@TestVariable,'\"') SELECT top 20 * FROM products  WHERE CONTAINS(product_name,@TestVariable)"
+    @Query( value = "DECLARE @TestVariable AS VARCHAR(400) SET @TestVariable = :product_name SET @TestVariable = CONCAT('\"',@TestVariable,'\"') SELECT * FROM products AS FT_TBL INNER JOIN FREETEXTTABLE(products, product_name, @TestVariable) AS KEY_TBL ON FT_TBL.id = KEY_TBL.[KEY] WHERE KEY_TBL.RANK >= 10 ORDER BY KEY_TBL.RANK DESC "
 
     , nativeQuery = true)
     List<InStoreProduct> findByName(@Param("product_name") String product_name);
+
+    @Query(value= " DECLARE @TestVariable AS VARCHAR(400) SET @TestVariable = :product_name SET @TestVariable = CONCAT('\"',@TestVariable,'\"') SELECT *, distance = GEOGRAPHY\\:\\:Point(:user_latitude, :user_longitude, 4326).STDistance(GEOGRAPHY\\:\\:Point(latitude, longitude, 4326)) / 1609.344 FROM products AS FT_TBL INNER JOIN FREETEXTTABLE(products, product_name, @TestVariable) AS KEY_TBL ON FT_TBL.id = KEY_TBL.[key] WHERE KEY_TBL.RANK >= 10 ORDER BY KEY_TBL.RANK DESC ,distance asc"
+            ,nativeQuery = true)
+    List<InStoreProduct> findByNameAndProximity(@Param("product_name") String product_name,@Param("user_latitude") Double userlatitude,@Param("user_longitude") Double userlongitude);
+
 }
