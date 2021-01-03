@@ -15,4 +15,7 @@ public interface ProductRepository extends CrudRepository<InStoreProduct,Integer
             nativeQuery = true)
     List<InStoreProduct> getProximalProduct(@Param("user_latitude") Double userlatitude,@Param("user_longitude") Double userlongitude);
 
+    @Query( value = "SELECT top 20 * FROM products  WHERE CONTAINS(product_name,:product_name)"
+    , nativeQuery = true)
+    List<InStoreProduct> findByName(@Param("product_name") String product_name);
 }

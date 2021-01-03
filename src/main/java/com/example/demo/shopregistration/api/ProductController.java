@@ -34,9 +34,9 @@ public class ProductController {
     @GetMapping("getProductByName")
     List<InStoreProduct> getAllSimilarProducts(@RequestParam String name) {
         List<InStoreProduct> products = new ArrayList<>();
-//        productRepository.findByName(name).forEach(product -> {
-//            products.add(product);
-//        });
+            productRepository.findByName(name).forEach(product -> {
+                products.add(product);
+            });
         return products;
     }
 
