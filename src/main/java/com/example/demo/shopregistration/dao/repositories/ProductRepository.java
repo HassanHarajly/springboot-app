@@ -20,7 +20,7 @@ public interface ProductRepository extends CrudRepository<InStoreProduct,Integer
     , nativeQuery = true)
     List<InStoreProduct> findByName(@Param("product_name") String product_name);
 
-    @Query(value= " DECLARE @TestVariable AS VARCHAR(400) SET @TestVariable = :product_name SET @TestVariable = CONCAT('\"',@TestVariable,'\"') SELECT *, distance = GEOGRAPHY\\:\\:Point(:user_latitude, :user_longitude, 4326).STDistance(GEOGRAPHY\\:\\:Point(latitude, longitude, 4326)) / 1609.344 FROM products AS FT_TBL INNER JOIN FREETEXTTABLE(products, product_name, @TestVariable) AS KEY_TBL ON FT_TBL.id = KEY_TBL.[key] WHERE KEY_TBL.RANK >= 10 ORDER BY KEY_TBL.RANK DESC ,distance asc"
+    @Query(value= " DECLARE @ProductName AS VARCHAR(400) SET @ProductName = :product_name SET @ProductName = CONCAT('\\\"',@ProductName,'\\\"') SELECT * FROM( SELECT *, distance = (GEOGRAPHY\\:\\:Point(:user_latitude, :user_longitude, 4326).STDistance(GEOGRAPHY\\:\\:Point(latitude, longitude, 4326)) / 1609.344) FROM products WHERE (GEOGRAPHY\\:\\:Point(:user_latitude, :user_longitude, 4326).STDistance(GEOGRAPHY\\:\\:Point(latitude, longitude, 4326)) / 1609.344) < 70000) AS FT_TBL INNER JOIN FREETEXTTABLE(products, product_name, @ProductName) AS KEY_TBL ON FT_TBL.id = KEY_TBL.[key] WHERE KEY_TBL.RANK >= 10 ORDER BY KEY_TBL.RANK ASC ,distance ASC"
             ,nativeQuery = true)
     List<InStoreProduct> findByNameAndProximity(@Param("product_name") String product_name,@Param("user_latitude") Double userlatitude,@Param("user_longitude") Double userlongitude);
 

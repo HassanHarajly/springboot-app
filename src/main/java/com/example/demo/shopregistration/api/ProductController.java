@@ -31,7 +31,7 @@ public class ProductController {
         productRepository.save(inStoreProduct);
     }
 
-    @GetMapping("getProductByName")
+    @GetMapping("getProductByNameAndProximity")
     List<InStoreProduct> getAllSimilarProducts(@RequestParam String name,@RequestParam double longitude, @RequestParam double latitude) {
         return productRepository.findByNameAndProximity(name,latitude,longitude);
     }

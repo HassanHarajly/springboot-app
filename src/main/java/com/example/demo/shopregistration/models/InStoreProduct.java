@@ -23,4 +23,5 @@ public class InStoreProduct {
     double product_price;
     double latitude;
     double longitude;
+    double distance;
 }
