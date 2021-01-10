@@ -33,6 +33,7 @@ target/
 
 # Sensitive or high-churn files
 .idea/**/dataSources/
+.idea/**/dataSources/sqldialects.xml
 .idea/**/dataSources.ids
 .idea/**/dataSources.local.xml
 .idea/**/sqlDataSources.xml
